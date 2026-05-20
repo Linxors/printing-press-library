@@ -2056,6 +2056,30 @@
       }
     },
     {
+      "name": "posthog",
+      "category": "developer-tools",
+      "api": "PostHog",
+      "description": "Every PostHog resource in one CLI — with offline search, agent-native output, and cross-resource analytics no...",
+      "path": "library/developer-tools/posthog",
+      "printer": "riteshtiwari",
+      "printer_name": "riteshtiwari",
+      "mcp": {
+        "binary": "posthog-pp-mcp",
+        "transports": [
+          "stdio",
+          "http"
+        ],
+        "tool_count": 2,
+        "public_tool_count": 2,
+        "auth_type": "api_key",
+        "env_vars": [
+          "POSTHOG_PERSONAL_APIKEY_AUTH"
+        ],
+        "mcp_ready": "full",
+        "spec_format": "openapi3"
+      }
+    },
+    {
       "name": "postman-explore",
       "category": "developer-tools",
       "api": "Postman Explore",
