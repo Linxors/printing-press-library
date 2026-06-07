@@ -10,10 +10,12 @@
     "internal/cli/suno_sync.go",
     "internal/cli/sync.go",
     "internal/cli/suno_sync_incremental_test.go",
+    "internal/cli/sync_incremental_test.go",
     "internal/cli/suno_credits.go",
     "internal/auth/refresh.go"
   ],
   "validated_outcome": "go test ./... && go test ./internal/cli/ ./internal/client/ -race",
+  "review_followup": "Library review (Greptile P1) found pageOldestBefore parsed created_at with strict time.RFC3339, which rejects Suno's fractional-second timestamps — skipping such records so the early-stop never fired and the feed re-drained. Switched pageOldestBefore to the shared parseClipTime helper (RFC3339Nano + fallbacks), moved the boundary parses in sync.go/suno_sync.go to RFC3339Nano, and added a pageOldestBefore regression test for a fractional-second oldest record.",
   "findings_addressed": [
     "clips-incremental-early-stop-wiring"
   ]

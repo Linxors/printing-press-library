@@ -171,7 +171,7 @@ func clipsEarlyStopBoundary(sinceTS string, lastSynced time.Time, full bool, tsF
 	if boundary == "" {
 		return time.Time{}, false
 	}
-	ts, err := time.Parse(time.RFC3339, boundary)
+	ts, err := time.Parse(time.RFC3339Nano, boundary)
 	if err != nil {
 		return time.Time{}, false
 	}

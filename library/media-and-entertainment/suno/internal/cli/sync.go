@@ -461,7 +461,7 @@ func syncResource(ctx context.Context, c interface {
 		if tsField != "" {
 			// On the unlikely parse failure, earlyStop stays false and the
 			// resource falls back to a full drain (fail-open, not closed).
-			if ts, perr := time.Parse(time.RFC3339, effectiveSince); perr == nil {
+			if ts, perr := time.Parse(time.RFC3339Nano, effectiveSince); perr == nil {
 				earlyStopSince = ts
 				if sinceTS == "" {
 					// Automatic (stored-cursor) path: subtract a clock-skew margin
@@ -885,8 +885,12 @@ func pageOldestBefore(items []json.RawMessage, field string, boundary time.Time)
 		if !ok || s == "" {
 			continue
 		}
-		ts, err := time.Parse(time.RFC3339, s)
-		if err != nil {
+		// Use the shared Suno created_at parser, not a bare RFC3339 layout:
+		// Suno timestamps carry fractional seconds, which time.RFC3339 rejects.
+		// A strict-RFC3339 parse would skip every such record, so the early-stop
+		// never fires and clips --since re-drains the whole feed every run.
+		ts, tsOK := parseClipTime(s)
+		if !tsOK {
 			continue
 		}
 		return ts.Before(boundary)

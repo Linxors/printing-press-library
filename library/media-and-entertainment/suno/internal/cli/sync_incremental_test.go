@@ -79,4 +79,14 @@ func TestPageOldestBefore(t *testing.T) {
 	if pageOldestBefore(raws2(`{"id":"a"}`), "created_at", boundary) {
 		t.Errorf("no-timestamp page: pageOldestBefore = true, want false")
 	}
+	// Regression: the OLDEST (evaluated) record carries fractional seconds, which
+	// Suno emits. A strict time.RFC3339 parse rejects it, skips the record, and
+	// the early-stop never fires; parseClipTime handles fractional seconds.
+	fractionalOldest := raws2(
+		`{"id":"a","created_at":"2026-06-05T10:00:00Z"}`,
+		`{"id":"b","created_at":"2026-05-30T09:00:00.123456Z"}`,
+	)
+	if !pageOldestBefore(fractionalOldest, "created_at", boundary) {
+		t.Errorf("fractional oldest: pageOldestBefore = false, want true (fractional-second created_at must parse)")
+	}
 }
