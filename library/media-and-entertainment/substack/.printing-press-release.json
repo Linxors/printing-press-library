@@ -2,17 +2,17 @@
   "schema_version": 1,
   "slug": "substack",
   "cli_name": "substack-pp-cli",
-  "version": "2026.6.2",
-  "released_at": "2026-06-16T04:58:03Z",
-  "source_commit": "463677cfb341e23e19d854788d9a7866610e4c18",
+  "version": "2026.6.3",
+  "released_at": "2026-06-16T14:14:12Z",
+  "source_commit": "efb5e64f588d422e7160f7f020fc5bba3122f828",
   "printing_press_version": "4.19.0",
   "run_id": "20260531-014452",
   "changes": [
     {
-      "title": "fix(substack): honor publication subdomain for drafts",
-      "pr": 1224,
-      "url": "https://github.com/mvanhorn/printing-press-library/pull/1224",
-      "commit": "463677cfb341e23e19d854788d9a7866610e4c18"
+      "title": "fix(substack): report substituted publication URLs",
+      "pr": 1229,
+      "url": "https://github.com/mvanhorn/printing-press-library/pull/1229",
+      "commit": "efb5e64f588d422e7160f7f020fc5bba3122f828"
     }
   ]
 }
