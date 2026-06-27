@@ -5,7 +5,15 @@ author: "rderwin"
 license: "Apache-2.0"
 argument-hint: "<command> [args] | install cli|mcp"
 allowed-tools: "Read Bash"
-metadata: '{"openclaw":{"requires":{"bins":["redfin-pp-cli"]},"install":[{"id":"go","kind":"shell","command":"go install github.com/mvanhorn/printing-press-library/library/other/redfin/cmd/redfin-pp-cli@latest","bins":["redfin-pp-cli"],"label":"Install via go install"}]}}'
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - redfin-pp-cli
+    install:
+      - kind: go
+        bins: [redfin-pp-cli]
+        module: github.com/mvanhorn/printing-press-library/library/other/redfin/cmd/redfin-pp-cli
 ---
 
 # Redfin — Printing Press CLI

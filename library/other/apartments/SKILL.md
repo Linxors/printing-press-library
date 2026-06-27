@@ -5,7 +5,15 @@ author: "rderwin"
 license: "Apache-2.0"
 argument-hint: "<command> [args] | install cli|mcp"
 allowed-tools: "Read Bash"
-metadata: '{"openclaw":{"requires":{"bins":["apartments-pp-cli"]},"install":[{"id":"go","kind":"shell","command":"go install github.com/mvanhorn/printing-press-library/library/other/apartments/cmd/apartments-pp-cli@latest","bins":["apartments-pp-cli"],"label":"Install via go install"}]}}'
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - apartments-pp-cli
+    install:
+      - kind: go
+        bins: [apartments-pp-cli]
+        module: github.com/mvanhorn/printing-press-library/library/other/apartments/cmd/apartments-pp-cli
 ---
 
 # Apartments.com — Printing Press CLI
